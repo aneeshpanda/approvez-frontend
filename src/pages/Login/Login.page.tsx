@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { useCookies } from "react-cookie";
 import "./Login.styles.css";
 import User from "../../assets/User/User.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signInWithEmail } from "../api/auth";
 
 function Login() {
+  const [, setCookies] = useCookies(["token"]);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    signInWithEmail(email, password)
+      .then((res: any) => {
+        setCookies("token", res.data.data.JWT);
+        navigate("/campaigns", {});
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const onEmailChange = (event: any) => {
+    setEmail(event.target.value);
+  };
+  const onPasswordChange = (event: any) => {
+    setPassword(event.target.value);
+  };
+
   return (
     <div className="Login">
       <div className="justify-center flex">
@@ -21,6 +44,8 @@ function Login() {
               type="text"
               name="username"
               placeholder="email"
+              value={email}
+              onChange={onEmailChange}
             />
           </div>
           <div className="text-center">
@@ -30,13 +55,18 @@ function Login() {
               type="password"
               name="password"
               placeholder="password"
+              value={password}
+              onChange={onPasswordChange}
             />
           </div>
           <div className="text-right text-white mr-[4.5%] mt-[16px]">
             <Link to="/forgetpassword"> Forgot Password?</Link>
           </div>
           <div className="text-center">
-            <button className="bg-[#C27FA8] hover:bg-[#FFA4DC] py-2 px-4 mt-14 mb-16 rounded-md w-[157px] justify-center">
+            <button
+              className="bg-[#C27FA8] hover:bg-[#FFA4DC] py-2 px-4 mt-14 mb-16 rounded-md w-[157px] justify-center"
+              onClick={handleLogin}
+            >
               Login
             </button>
           </div>

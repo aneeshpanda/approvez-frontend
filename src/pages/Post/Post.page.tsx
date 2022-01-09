@@ -5,6 +5,9 @@ import CampaignImage from "../../assets/Campaigns/CampaignImage.svg";
 import PublishedByIcon from "../../assets/Post/PublishedByIcon.svg";
 import ReviewedByIcon from "../../assets/Post/ReviewedByIcon.svg";
 import PostedByIcon from "../../assets/Post/PostedByIcon.svg";
+import Approved from "../../assets/Post/Approved.svg";
+import Retry from "../../assets/Post/Retry.svg";
+import "./Post.styles.css";
 function Post() {
   return (
     <div className="Campaigns">
@@ -39,8 +42,37 @@ function Post() {
               <img src={PostedByIcon} alt="Published By" />
               <div className="ml-1">To be posted on 9/1/22</div>
             </div>
-                      <div className="text-center text-[#C887A9] font-bold text-[24px]">Comment</div>
-                      <div className="flex flex-col rounded-md"></div>
+            <div className="text-center text-[#C887A9] font-bold text-[24px]">
+              Comment
+            </div>
+            <div className="flex flex-col rounded-md border-[#008205] border-2 text-left p-2 mt-[24px] comment">
+              <div className="comment-text">
+                <div className="relative bottom-[24px] comment-inner">
+                  <div className="justify-end relative left-[18px] flex">
+                    <img className="approved-image" src={Approved} alt="" />
+                  </div>
+                  <div className="name font-bold text-xs">Vibhuti Arora</div>
+                  <div className="text text-xs">LGTM!</div>
+                </div>
+                <div className="time text-right text-xs text-[#9A9A9A]">
+                  09:56 AM
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col rounded-md border-[#D00000] border-2 text-left p-2 mt-[24px] comment">
+              <div className="comment-text">
+                <div className="relative bottom-[24px] comment-inner">
+                  <div className="justify-end relative left-[18px] flex">
+                    <img className="approved-image" src={Retry} alt="" />
+                  </div>
+                  <div className="name font-bold text-xs">Vibhuti Arora</div>
+                  <div className="text text-xs">LGTM!</div>
+                </div>
+                <div className="time text-right text-xs text-[#9A9A9A]">
+                  09:56 AM
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

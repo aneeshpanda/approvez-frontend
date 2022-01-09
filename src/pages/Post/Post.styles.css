@@ -1,0 +1,7 @@
+.approved-image {
+  width: 20px;
+}
+
+.comment-inner {
+    height: calc(100% - 24px);
+}
